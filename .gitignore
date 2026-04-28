@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+.venv/
+ENV/
+
+# Gradio & App
+*.log
+agent_orchestrator.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# CSV exports (if generated)
+*.csv
+payroll_report_*.csv
+
+# Data directory (employee data and reports)
+data/
+
+# Environment variables
+.env
+.env.local
