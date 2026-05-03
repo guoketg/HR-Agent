@@ -187,12 +187,15 @@ class TestAgentOrchestrator(unittest.TestCase):
         mock_response.choices[0].message.content = "这是测试回复"
         mock_response.choices[0].message.tool_calls = None
 
-        with patch('client.client') as mock_client:
-            mock_client.chat.completions.create.return_value = mock_response
-            history = []
-            messages_state = []
-            results = list(agent_orchestrator("测试问题", history, messages_state, "qwen3.5:9b"))
-            self.assertGreater(len(results), 0)
+        mock_client_instance = Mock()
+        mock_client_instance.chat.completions.create.return_value = mock_response
+
+        with patch('services.agent.get_client', return_value=mock_client_instance):
+            with patch('services.agent.get_provider_and_model', return_value=('ollama', 'qwen3.5:9b')):
+                history = []
+                messages_state = []
+                results = list(agent_orchestrator("测试问题", history, messages_state, "qwen3.5:9b"))
+                self.assertGreater(len(results), 0)
 
 
 class TestDataPersistence(unittest.TestCase):

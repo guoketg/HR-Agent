@@ -41,6 +41,9 @@ payroll_report_*.csv
 # Data directory (employee data and reports)
 data/
 
+# Conversation history
+data/conversations/
+
 # Environment variables
 .env
 .env.local

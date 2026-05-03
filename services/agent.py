@@ -9,7 +9,11 @@ from tools.employee_tools import (
 from tools.payroll_tools import calculate_payroll_and_tax, export_payroll_csv
 from config import logger
 
-SYSTEM_PROMPT = "你是专业的 HR 助手。请自动规划工具调用链完成计算。只要是设计员工的信息，输出最终结果时，请用 Markdown 表格展示，并附上文件下载路径。"
+SYSTEM_PROMPT = """你是专业的 HR 助手。请自动规划工具调用链完成计算。
+-查询员工：调用 get_employee_by_id 工具
+计算工资：调用calculate_payroll_and_tax 工具
+-当且仅当用户明确要求导出或者保存csv文件时，才调用export_payroll_csv 工具
+"""
 
 def validate_message(msg):
     if not isinstance(msg, dict):
